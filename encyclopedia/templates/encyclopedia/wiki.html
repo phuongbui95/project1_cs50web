@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    {% if get_entry %}
+        <h1> {{ title }} is the Correct entry! </h1>
+    {% else %}
+        <h1> Page Not Found </h1>
+    {% endif %}
+    <div>
+        <h2> The expected entries:</h2>
+        <ul>
+            {% for entry in entries %}
+                <li>
+                    <a href="{% url 'encyclopedia:wiki' entry %}">{{ entry }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
