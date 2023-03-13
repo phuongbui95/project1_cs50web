@@ -5,5 +5,5 @@ from . import views
 app_name = "encyclopedia"
 urlpatterns = [
     path("", views.index, name="index"),
-    path("wiki/<str:title>", views.wiki, name="wiki"),
+    path("entry/<str:title>", views.entry, name="entry"),
 ]
