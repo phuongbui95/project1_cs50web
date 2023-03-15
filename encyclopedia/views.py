@@ -20,15 +20,30 @@ def search(request):
     # Check if method is GET
     if request.method == "GET":
         query = request.GET.get("q") # get the search query
+        # if the searched query is found in util.list_entries()
         if(query in entries):
-            return redirect("encyclopedia:entry", title=query) # redirect to a url tag with 'title' as a parameter
-        return render(request, "encyclopedia/search.html", {
-            "entries": entries,
-            "q": query
-        })
-    
+             # redirect to a url tag with 'title' as a parameter
+            return redirect("encyclopedia:entry", title=query)
+        # if not matched any queries in list_entries, redirect to search.html
+        else:
+            results = []
+            for entry in entries:
+                if query in entry.lower():
+                    results.append(entry)
+            
+            # if a list of "results" is empty, use elements of list of default entries
+            if not results: 
+                results = entries
+            return render(request, "encyclopedia/search.html", {
+                "q": query,
+                "entries": results
+            })
+            
+            
+    # if not GET any queries, present the search.html
     return render(request, "encyclopedia/search.html", {
-        "entries": entries,
-        "q": None
+        "q": None,
+        "entries": entries
+        
     })            
 
