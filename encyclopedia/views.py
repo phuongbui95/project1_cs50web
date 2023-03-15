@@ -33,7 +33,8 @@ def search(request):
             
             # if a list of "results" is empty, use elements of list of default entries
             if not results: 
-                results = entries
+                # results = entries
+                return redirect("encyclopedia:entry", title=query)
             return render(request, "encyclopedia/search.html", {
                 "q": query,
                 "entries": results
