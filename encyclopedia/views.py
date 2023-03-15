@@ -31,7 +31,7 @@ def search(request):
                 if query in entry.lower():
                     results.append(entry)
             
-            # if a list of "results" is empty, use elements of list of default entries
+            # if a list of "results" is empty, list the default entries
             if not results: 
                 # results = entries
                 return redirect("encyclopedia:entry", title=query)
