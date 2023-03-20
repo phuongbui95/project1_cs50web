@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import util
+import markdown2
 
 entries = util.list_entries()
 
@@ -10,9 +11,11 @@ def index(request):
 
 
 def entry(request, title):
+    content = markdown2.markdown(str(util.get_entry(title)))
     return render(request, "encyclopedia/entry.html", {
-        "get_entry": util.get_entry(title),
         "title": title,
+        "get_entry": util.get_entry(title),
+        "content": content,
         "entries": entries
     })
 
@@ -48,3 +51,5 @@ def search(request):
         
     })            
 
+def new(request):
+    return render(request, "encyclopedia/new.html")
