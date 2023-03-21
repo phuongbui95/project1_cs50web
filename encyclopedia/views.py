@@ -1,12 +1,16 @@
 from django import forms
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Entry
+from django.shortcuts import render, redirect
 
 from . import util
 import markdown2
 
 # class to store content of New Pages
 class NewPageForm(forms.Form):
+    title = forms.CharField()
+    content = forms.CharField(widget=forms.Textarea())
+
+# class to edit content of Entry Pages
+class EditPageForm(forms.Form):
     title = forms.CharField()
     content = forms.CharField(widget=forms.Textarea())
 
@@ -85,17 +89,19 @@ def new(request):
     
 # Edit page
 def edit(request, title):
-    entry = get_object_or_404(Entry, id=title)
-    if request.method != 'POST':
-        form = NewPageForm(instance=entry)
-    else:
-        form = NewPageForm(request.POST, instance=entry)
+    if request.method == "POST":
+        # If the new update is saved, redirect to new entry's page
+        form = EditPageForm(request.POST)
         if form.is_valid():
-            form.save()
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
+            util.save_entry(title, content)
             return redirect("encyclopedia:entry", title=title)
-
-    return render(request, 'encyclopedia:edit.html', {
-        "entry": entry, 
-        "form": form,
-        "title": title
-    })
+    else:
+        # pre-populated with the existing Markdown content of the page
+        return render(request, 'encyclopedia/edit.html', {
+            "title": title,
+            "content": util.get_entry(title)
+        })
+    
+        
