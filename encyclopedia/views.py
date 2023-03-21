@@ -5,8 +5,8 @@ import markdown2
 
 # class to store date for New Page
 class NewPageForm(forms.Form):
-    title = forms.CharField(label="Title")
-    content = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":20}), label="Content")
+    title = forms.CharField()
+    content = forms.CharField(widget=forms.Textarea())
 
 # index page
 def index(request):
@@ -66,7 +66,8 @@ def new(request):
             content = form.cleaned_data["content"]
             if title in util.list_entries():
                 return render(request, "encyclopedia/error.html", {
-                    "message": "Page already exists."
+                    "message": "Page already exists!",
+                    "title": title
                     })
             else:
                 util.save_entry(title, content)
