@@ -36,3 +36,14 @@ def get_entry(title):
     except FileNotFoundError:
         return None
 
+# additional function from Phuong Bui
+def delete_entry(title):
+    """
+    Deletes the expected entries
+    """
+    filename = f"entries/{title}.md"
+    if title in ["CSS","Django","Git","HTML","Python"]:
+        return "Cannot delete this page!"
+    else:
+        default_storage.delete(filename)
+        return "This page is Deleted!"

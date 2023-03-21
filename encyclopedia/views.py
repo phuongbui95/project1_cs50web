@@ -104,4 +104,9 @@ def edit(request, title):
             "content": util.get_entry(title)
         })
     
-        
+# delete page
+def delete(request, title):
+    return render(request, "encyclopedia/delete.html", {
+        "title": title,
+        "message": util.delete_entry(title)
+    })

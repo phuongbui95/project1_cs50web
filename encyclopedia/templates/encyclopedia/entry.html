@@ -6,7 +6,8 @@
 
 {% block body %}
     {% if get_entry %}
-        <a href="{% url 'encyclopedia:edit' title %}">Edit page</a>
+        <button><a href="{% url 'encyclopedia:edit' title %}">Edit page</a></button>
+        <span><a href="{% url 'encyclopedia:delete' title %}" style="padding-left: 1%;">Delete page</a></span>
         {{ content|safe }}
     {% else %}
         <h1> No results for: {{ title }} </h1>
