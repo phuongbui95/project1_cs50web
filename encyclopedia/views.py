@@ -1,9 +1,11 @@
 from django import forms
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Entry
+
 from . import util
 import markdown2
 
-# class to store date for New Page
+# class to store content of New Pages
 class NewPageForm(forms.Form):
     title = forms.CharField()
     content = forms.CharField(widget=forms.Textarea())
@@ -80,3 +82,20 @@ def new(request):
         return render(request, "encyclopedia/new.html", {
             "form": NewPageForm()
             })
+    
+# Edit page
+def edit(request, title):
+    entry = get_object_or_404(Entry, id=title)
+    if request.method != 'POST':
+        form = NewPageForm(instance=entry)
+    else:
+        form = NewPageForm(request.POST, instance=entry)
+        if form.is_valid():
+            form.save()
+            return redirect("encyclopedia:entry", title=title)
+
+    return render(request, 'encyclopedia:edit.html', {
+        "entry": entry, 
+        "form": form,
+        "title": title
+    })
