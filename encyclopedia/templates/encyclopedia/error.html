@@ -1,0 +1,18 @@
+<!-- add this line to use style.css -->
+{% load static %}
+<!-- add this line to use layout.html -->
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <h1> {{ message }}</h1>
+    <div class="container">
+        <img src="https://i.pinimg.com/236x/01/6e/59/016e592cbe92dfce0d575693e1cb2f07.jpg?nii=t" alt="description of image" style="height:300px;"> 
+        <h4>See more: <a href="{% url 'encyclopedia:entry' title %}">{{ title }}</a></h4>
+    </div>
+{% endblock %}
+
+
