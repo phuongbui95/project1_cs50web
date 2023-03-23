@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 from . import util
 import markdown2
+import random
 
 # class to store content of New Pages
 class NewPageForm(forms.Form):
@@ -110,3 +111,9 @@ def delete(request, title):
         "title": title,
         "message": util.delete_entry(title)
     })
+
+# random page
+def random_page(request):
+    entries_list = util.list_entries()
+    title = random.choice(entries_list)
+    return redirect("encyclopedia:entry", title=title)
