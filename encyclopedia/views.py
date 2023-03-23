@@ -44,7 +44,7 @@ def search(request):
         else:
             results = []
             for entry in util.list_entries():
-                if query in entry.lower():
+                if query.lower() in entry.lower():
                     results.append(entry)
             
             # if a list of "results" is empty, list the default entries
@@ -71,11 +71,14 @@ def new(request):
         if form.is_valid():
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
-            if title in util.list_entries():
-                return render(request, "encyclopedia/error.html", {
-                    "message": "Page already exists!",
-                    "title": title
-                    })
+            
+            # if title in util.list_entries():
+            for entry in util.list_entries():
+                if title.lower() in entry.lower():
+                    return render(request, "encyclopedia/error.html", {
+                        "message": "Page already exists!",
+                        "title": entry
+                        })
             else:
                 util.save_entry(title, content)
                 return redirect("encyclopedia:entry", title=title)

@@ -5,13 +5,19 @@
 {% endblock %}
 
 {% block body %}
-    <h1> Delete Page: {{ title }} </h1>
-    <h3> {{ message }} </h3>
-    {% if message == "Cannot delete this page!" %}
-        <img src="https://th.bing.com/th/id/R.e29233349a5e0d260d647b751bc08489?rik=Z7hn%2bRTMhB4i5w&pid=ImgRaw&r=0" alt="description of image" style="height:300px;"> 
-    {% else %}
-        <img src="https://th.bing.com/th/id/OIP.6EloxQoIQ6weUK3kkIfLDgHaGN?pid=ImgDet&rs=1" style="height:300px;"> 
-    {% endif %}
+    <h2> Delete Page: {{ title }} </h2>
+    <div class="container">
+        <div style="padding-right: 2%;">
+            <h3> {{ message }} </h3>
+        </div>
+        <div>
+            {% if message == "Cannot delete default page" %}
+                <img src="https://th.bing.com/th/id/R.e29233349a5e0d260d647b751bc08489?rik=Z7hn%2bRTMhB4i5w&pid=ImgRaw&r=0" alt="description of image" style="height:300px;"> 
+            {% else %}
+                <img src="https://th.bing.com/th/id/R.a183511a045c39d28e177ce1126873db?rik=%2baX4qHbCRT4LWg&riu=http%3a%2f%2fclipart-library.com%2fnew_gallery%2f178285_troll-face-png-no-background.png&ehk=BbhYgGclaV5h5%2f5BDdiQH0a0mOT4PxffYTFoNMXrEuM%3d&risl=&pid=ImgRaw&r=0" style="height:300px;"> 
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
 
 

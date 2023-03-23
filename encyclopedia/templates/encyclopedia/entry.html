@@ -10,18 +10,22 @@
         <span><a href="{% url 'encyclopedia:delete' title %}" style="padding-left: 1%;">Delete page</a></span>
         {{ content|safe }}
     {% else %}
+        <h1>No result: {{ title }}</h1>
         <div class="container">
-            <h1> No results for: {{ title }} </h1>
-            <img src="https://www.acmesystems.it/www/pagenotfound/page_not_found.jpg" alt="description of image" style="height:250px; width: 400px;"> 
-            <h3> The expected entries: </h3>
-            <ul>       
-                {% for entry in entries %}
-                    <li>
-                        <a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a>
-                    </li>
-                {% endfor %} 
-                
-            </ul>
+            <div>
+                <img src="https://www.acmesystems.it/www/pagenotfound/page_not_found.jpg" alt="description of image" style="height:250px; width: 400px;"> 
+            </div>
+            <div>
+                <h3> The expected entries: </h3>
+                <ul>       
+                    {% for entry in entries %}
+                        <li>
+                            <a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a>
+                        </li>
+                    {% endfor %} 
+                    
+                </ul>
+            </div>
         </div>
     {% endif %}
 {% endblock %}

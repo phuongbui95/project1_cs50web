@@ -43,7 +43,7 @@ def delete_entry(title):
     """
     filename = f"entries/{title}.md"
     if title in ["CSS","Django","Git","HTML","Python"]:
-        return "Cannot delete this page!"
+        return "Cannot delete default page"
     else:
         default_storage.delete(filename)
-        return "This page is Deleted!"
+        return "This page is Deleted"

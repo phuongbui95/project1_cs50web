@@ -6,15 +6,20 @@
 
 {% block body %}
     <h1>Search result: {{ q }}</h1>
-    <div>
-        <h2> Are you looking for?</h2>
-        <ul>       
-            {% for entry in entries %}
-                <li>
-                    <a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a>
-                </li>
-            {% endfor %}     
-        </ul>
+    <div class="container">
+        <div>
+            <img src="https://th.bing.com/th/id/R.6d1d67ed67e6fb9b1ea92b1f96b76c06?rik=vXeVl6oT8Sbatw&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fmeme-face-transparent-background%2fmeme-face-transparent-background-15.png&ehk=fzSMtW3T44FSaR6qzf543PxHzVBWRp%2b5CvP6jU%2fjxnw%3d&risl=&pid=ImgRaw&r=0" style="height: 300px;"> 
+        </div>
+        <div>
+            <h2> Are you looking for?</h2>
+            <ul>       
+                {% for entry in entries %}
+                    <li>
+                        <a href="{% url 'encyclopedia:entry' entry %}">{{ entry }}</a>
+                    </li>
+                {% endfor %}     
+            </ul>
+        </div>
     </div>
 
 {% endblock %}

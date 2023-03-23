@@ -1,6 +1,7 @@
+/* To test CSS, deploy in Incognito mode so that browser does not cache CSS file */
 body {
     margin: 0;
-    background-color: green;
+    background-color: white;
 }
 
 code {
@@ -44,4 +45,6 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding: 5%;
 }
