@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: white;
+    background-color: green;
 }
 
 code {
@@ -14,13 +14,15 @@ h1 {
 
 /* Don't work on textarea */
 textarea {
-    height: 90vh;
+    height: 60vh;
     width: 80%;
 }
 
 .main {
     padding: 10px;
 }
+
+
 
 .search {
     width: 100%;
@@ -36,4 +38,10 @@ textarea {
 
 .sidebar h2 {
     margin-top: 5px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
